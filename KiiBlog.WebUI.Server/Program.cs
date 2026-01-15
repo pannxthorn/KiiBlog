@@ -1,11 +1,13 @@
 using KiiBlog.WebUI.Server.Components;
 using KiiBlog.Infrastructure;
+using KiiBlog.Application;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorComponents();
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 
