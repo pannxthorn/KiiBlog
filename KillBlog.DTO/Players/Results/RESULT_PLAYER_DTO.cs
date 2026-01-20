@@ -25,5 +25,5 @@ namespace KillBlog.DTO.Players
         [SetsRequiredMembers]
         public RESULT_PLAYER_DTO() { }
     }
-    }
+    
 }

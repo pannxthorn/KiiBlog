@@ -49,3 +49,81 @@ h1:focus {
 .darker-border-checkbox.form-check-input {
     border-color: #929292;
 }
+
+/* KeenThemes Custom Styling - Manchester United Color Scheme */
+#kt_app_header {
+    background: #ffffff;
+    border-bottom: 5px solid #DA291C;
+    box-shadow: 0 0.5rem 1.5rem 0.5rem rgba(218, 41, 28, 0.15);
+}
+
+#kt_app_header .app-container {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+}
+
+#kt_app_header h1,
+#kt_app_logo {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #DA291C !important;
+}
+
+/* User Icon */
+.app-navbar .btn-icon:hover {
+    background-color: #f5f5f5;
+}
+
+.app-header-menu .menu-link {
+    padding: 0.75rem 1.5rem;
+    font-weight: 500;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.app-header-menu .menu-icon {
+    display: flex;
+    align-items: center;
+}
+
+#kt_app_toolbar {
+    background-color: #f5f8fa;
+    border-bottom: 1px solid #eff2f5;
+}
+
+.app-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #eff2f5;
+}
+
+/* Additional Red Accents */
+.page-heading {
+    color: #DA291C !important;
+}
+
+.btn-primary {
+    background-color: #DA291C !important;
+    border-color: #DA291C !important;
+}
+
+.btn-primary:hover {
+    background-color: #c22415 !important;
+    border-color: #c22415 !important;
+}
+
+a {
+    color: #DA291C;
+}
+
+a:hover {
+    color: #c22415;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991.98px) {
+    .app-header-menu .menu-title {
+        display: inline-block;
+    }
+}

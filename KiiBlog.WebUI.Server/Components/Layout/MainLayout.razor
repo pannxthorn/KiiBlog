@@ -1,17 +1,79 @@
 ﻿@inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
+<div class="d-flex flex-column flex-root app-root" id="kt_app_root">
+    <div class="app-page flex-column flex-column-fluid" id="kt_app_page">
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <!-- Header -->
+        <div id="kt_app_header" class="app-header">
+            <div class="app-container container-fluid d-flex align-items-stretch justify-content-between">
+
+                <!-- Logo -->
+                <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0 me-lg-15">
+                    <a href="/">
+                        <h1 class="mb-0" id="kt_app_logo">KiiBlog</h1>
+                    </a>
+                </div>
+
+                <!-- Navbar -->
+                <div class="d-flex align-items-stretch justify-content-between flex-lg-grow-1">
+                    <div class="d-flex align-items-stretch" id="kt_app_header_wrapper">
+                        <div class="app-header-menu app-header-mobile-drawer align-items-stretch">
+                            <NavMenu />
+                        </div>
+                    </div>
+
+                    <!-- Toolbar -->
+                    <div class="app-navbar flex-shrink-0">
+                        <div class="app-navbar-item ms-1 ms-md-3">
+                            <div class="btn btn-icon btn-custom w-35px h-35px w-md-40px h-md-40px">
+                                <i class="ki-outline ki-user fs-2" style="color: #000000;"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+        <!-- Content Wrapper -->
+        <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+
+            <!-- Main Content -->
+            <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
+                <div class="d-flex flex-column flex-column-fluid">
+
+                    <!-- Toolbar -->
+                    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
+                        <div id="kt_app_toolbar_container" class="app-container container-fluid d-flex flex-stack">
+                            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
+                                <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
+                                </h1>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Content -->
+                    <div id="kt_app_content" class="app-content flex-column-fluid">
+                        <div id="kt_app_content_container" class="app-container container-fluid">
+                            @Body
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div id="kt_app_footer" class="app-footer">
+                    <div class="app-container container-fluid d-flex flex-column flex-md-row flex-center flex-md-stack py-3">
+                        <div class="text-dark order-2 order-md-1">
+                            <span class="text-muted fw-semibold me-1">@DateTime.Now.Year ©</span>
+                            <a href="/" class="text-gray-800 text-hover-primary">KiiBlog</a>
+                        </div>
+                        <ul class="menu menu-gray-600 menu-hover-primary fw-semibold order-1">
+                            <li class="menu-item">
+                                <a href="https://learn.microsoft.com/aspnet/core/" target="_blank" class="menu-link px-2">About</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

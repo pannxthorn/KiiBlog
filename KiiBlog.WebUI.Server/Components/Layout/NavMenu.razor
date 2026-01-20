@@ -1,24 +1,75 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="">KiiBlog.WebUI.Server</a>
+﻿<div class="menu menu-rounded menu-column menu-lg-row my-5 my-lg-0 align-items-stretch fw-semibold px-2 px-lg-0"
+     id="kt_app_header_menu"
+     data-kt-menu="true">
+
+    <!-- Home Menu Item -->
+    <div class="menu-item me-0 me-lg-2">
+        <NavLink class="menu-link py-3" href="" Match="NavLinkMatch.All">
+            <span class="menu-icon">
+                <i class="ki-outline ki-home-2 fs-2"></i>
+            </span>
+            <span class="menu-title">Home</span>
+        </NavLink>
+    </div>
+
+    <!-- Weather Menu Item -->
+    @* <div class="menu-item me-0 me-lg-2">
+        <NavLink class="menu-link py-3" href="weather">
+            <span class="menu-icon">
+                <i class="ki-outline ki-cloud fs-2"></i>
+            </span>
+            <span class="menu-title">Weather</span>
+        </NavLink>
+    </div> *@
+
+    <!-- Players Menu Item (Example for future) -->
+    <div class="menu-item me-0 me-lg-2">
+        <NavLink class="menu-link py-3" href="players">
+            <span class="menu-icon">
+                <i class="ki-outline ki-people fs-2"></i>
+            </span>
+            <span class="menu-title">Players</span>
+        </NavLink>
     </div>
 </div>
 
-<input type="checkbox" title="Navigation menu" class="navbar-toggler" />
+<style>
+    /* Manchester United Color Scheme: Red, White, Black */
 
-<div class="nav-scrollable" onclick="document.querySelector('.navbar-toggler').click()">
-    <nav class="flex-column">
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
-            </NavLink>
-        </div>
+    /* Default state - Black text */
+    .menu-link {
+        color: #000000;
+    }
 
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-            </NavLink>
-        </div>
-    </nav>
-</div>
+    .menu-link .menu-title,
+    .menu-link .menu-icon,
+    .menu-link .menu-icon i {
+        color: #000000;
+    }
+
+    /* Hover state - Red background with White text */
+    .menu-link:hover {
+        background-color: #DA291C;
+        border-radius: 0.475rem;
+        transition: all 0.2s ease;
+    }
+
+    .menu-link:hover .menu-title,
+    .menu-link:hover .menu-icon,
+    .menu-link:hover .menu-icon i {
+        color: #ffffff !important;
+    }
+
+    /* Active state - Red background with White text */
+    .menu-link.active {
+        background-color: #DA291C;
+        border-radius: 0.475rem;
+    }
+
+    .menu-link.active .menu-title,
+    .menu-link.active .menu-icon,
+    .menu-link.active .menu-icon i {
+        color: #ffffff !important;
+    }
+</style>
 

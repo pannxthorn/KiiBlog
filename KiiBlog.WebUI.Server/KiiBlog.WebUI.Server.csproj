@@ -7,14 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\media\**" />
+    <Compile Remove="wwwroot\plugins\**" />
+    <Content Remove="wwwroot\media\**" />
+    <Content Remove="wwwroot\plugins\**" />
+    <EmbeddedResource Remove="wwwroot\media\**" />
+    <EmbeddedResource Remove="wwwroot\plugins\**" />
+    <None Remove="wwwroot\media\**" />
+    <None Remove="wwwroot\plugins\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.9">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Blazor" Version="26.2.9" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\KiiBlog.Infrastructure\KiiBlog.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\assets\" />
   </ItemGroup>
 
 </Project>

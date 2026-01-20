@@ -5,6 +5,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
+
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" />
+
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="KiiBlog.WebUI.Server.styles.css" />
@@ -12,8 +18,11 @@
     <HeadOutlet />
 </head>
 
-<body>
+<body id="kt_app_body" data-kt-app-layout="dark-header" data-kt-app-header-fixed="true" data-kt-app-toolbar-enabled="true" class="app-default">
     <Routes />
+
+    <script src="assets/plugins/global/plugins.bundle.js"></script>
+    <script src="assets/js/scripts.bundle.js"></script>
     <script src="_framework/blazor.web.js"></script>
 </body>
 
