@@ -1,0 +1,120 @@
+﻿@page "/Players"
+@inject HttpClient HttpClient
+
+<div class="row">
+    <div class="col-xl-3 col-12">
+        <center>
+            <div class="mb-7">
+                <label class="fs-6 fw-semibold mb-2">
+                    <span>Player Image</span>
+                </label>
+                <div class="mt-1">
+                    <div class="image-input image-input-outline"
+                    data-kt-image-input="true"
+                    style="background-image: url('assets/media/svg/avatars/blank.svg')">
+
+                        <div class="image-input-wrapper w-200px h-200px">
+                            <img class="upload-image img-fluid rounded" alt="Image" src="@photoURL" style="width:100%; height:100%;">
+                        </div>
+
+                        <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                        data-kt-image-input-action="change"
+                        data-bs-toggle="tooltip"
+                        data-kt-initialized="1">
+                            <i class="fa-solid fa-pencil fs-7"></i>
+                            <!--begin::Inputs-->
+                            <InputFile OnChange="OnFileChange" name="avatar" accept=".jpg,.jpeg,.png" />
+                            <input type="hidden" name="avatar_remove">
+                            <!--end::Inputs-->
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+</div>
+
+<SfToast @ref="ToastObj" Title="@titleToast" Content="@toastContent" Timeout="1000" Icon="e-meeting"> <ToastPosition X="Right"></ToastPosition></SfToast>
+<SfSpinner @bind-Visible=@visibleSpinner CssClass="e-spin-overlay" Size="50" Type="SpinnerType.Bootstrap5" Label="Loading Data....">
+</SfSpinner>
+@code {
+
+    public string photoURL { get; set; }
+
+    private bool visibleSpinner { get; set; }
+
+    private string titleToast { get; set; }
+    private string toastContent { get; set; }
+    private SfToast ToastObj;
+
+    protected override void OnInitialized()
+    {
+        photoURL = "assets/media/svg/avatars/blank.svg";
+    }
+
+    protected async Task ShowToast(string title, string content)
+    {
+        titleToast = title;
+        toastContent = content;
+        await ToastObj.ShowAsync();
+    }
+
+    protected async Task ShowLoadingOverlay()
+    {
+        visibleSpinner = true;
+        await Task.Delay(10);
+    }
+
+    protected async Task HideLoadingOverlay()
+    {
+        //await Task.Delay(10);
+        visibleSpinner = false;
+        await Task.CompletedTask;
+    }
+
+    private async Task OnFileChange(InputFileChangeEventArgs eventArgs)
+    {
+        if (eventArgs.File == null) return;
+
+        await ShowLoadingOverlay();
+        try
+        {
+            var file = eventArgs.File;
+            if (!ValidateFileTypeClient(file.Name))
+            {
+                await ShowToast("Error Toast", "Invalid file type");
+                return;
+            }
+
+            var result = await UploadFileToApi(file);
+        }
+        catch (Exception ex)
+        {
+            throw;
+        }
+        finally
+        {
+            await HideLoadingOverlay();
+        }
+    }
+
+    private bool ValidateFileTypeClient(string fileName)
+    {
+        var extension = Path.GetExtension(fileName).ToLowerInvariant();
+        return new[] { ".jpg", ".jpeg", ".png" }.Contains(extension);
+    }
+
+    private async Task<string> UploadFileToApi(IBrowserFile file)
+    {
+        string photoURL = string.Empty;
+        using var content = new MultipartFormDataContent();
+
+        var fileContent = new StreamContent(file.OpenReadStream(maxAllowedSize: 10485760));
+        fileContent.Headers.ContentType = new MediaTypeHeaderValue(file.ContentType);
+        content.Add(fileContent, "file", file.Name);
+
+        var response = await HttpClient.PostAsync($"https://localhost:7253/api/Player/UploadPlayerImage", content);
+
+        return photoURL;
+    }
+}

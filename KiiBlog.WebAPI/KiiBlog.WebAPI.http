@@ -1,0 +1,6 @@
+@KiiBlog.WebAPI_HostAddress = http://localhost:5036
+
+GET {{KiiBlog.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

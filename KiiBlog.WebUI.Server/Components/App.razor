@@ -10,16 +10,18 @@
 
     <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" />
     <link href="assets/css/style.bundle.css" rel="stylesheet" />
-
+    
     <link rel="stylesheet" href="bootstrap/bootstrap.min.css" />
     <link rel="stylesheet" href="app.css" />
     <link rel="stylesheet" href="KiiBlog.WebUI.Server.styles.css" />
     <link rel="icon" type="image/png" href="favicon.png" />
-    <HeadOutlet />
+    <HeadOutlet @rendermode="InteractiveServer" />
 </head>
 
 <body id="kt_app_body" data-kt-app-layout="dark-header" data-kt-app-header-fixed="true" data-kt-app-toolbar-enabled="true" class="app-default">
-    <Routes />
+    <Routes @rendermode="InteractiveServer" />
+
+    <script src="https://kit.fontawesome.com/4bbc694d0a.js" crossorigin="anonymous"></script>
 
     <script src="assets/plugins/global/plugins.bundle.js"></script>
     <script src="assets/js/scripts.bundle.js"></script>
