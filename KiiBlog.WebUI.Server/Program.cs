@@ -2,12 +2,12 @@ using KiiBlog.WebUI.Server.Components;
 using KiiBlog.Infrastructure;
 using KiiBlog.Application;
 using Syncfusion.Blazor;
+using KiiBlog.Infrastructure.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorComponents()
-    .AddInteractiveServerComponents();
+builder.Services.AddRazorComponents().AddInteractiveServerComponents();
 builder.Services.AddSyncfusionBlazor();
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();

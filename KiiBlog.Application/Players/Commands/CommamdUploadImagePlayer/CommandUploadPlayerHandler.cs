@@ -1,4 +1,5 @@
-﻿using KiiBlog.Application.UnitOfWork;
+﻿using KiiBlog.Application.Services;
+using KiiBlog.Application.UnitOfWork;
 using MediatR;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,35 @@ namespace KiiBlog.Application.Players
 {
     public class CommandUploadPlayerHandler : IRequestHandler<CommandUploadPlayer, string>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public CommandUploadPlayerHandler(IUnitOfWork unitOfWork)
+        private readonly IBlobStorageService _blobStorage;
+        public CommandUploadPlayerHandler(IBlobStorageService blobStorage)
         {
-            _unitOfWork = unitOfWork;
+            _blobStorage = blobStorage;
         }
         public async Task<string> Handle(CommandUploadPlayer request, CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            string url = string.Empty;
+            try
+            {
+                var file = request.File;
+                if (file == null)
+                    return string.Empty;
+
+                var fileName = $"{Guid.NewGuid()}_{file.FileName}";
+
+                using var stream = file.OpenReadStream();
+                var result = await _blobStorage.UploadPublicFileAsync(stream, fileName);
+                if (result != null && result.IS_SUCCESS)
+                {
+                    url = _blobStorage.GetPublicFileUrl(fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                // Log here
+            }
+
+            return url;
         }
     }
 }

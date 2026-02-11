@@ -1,5 +1,8 @@
-﻿using KiiBlog.Application.UnitOfWork;
+﻿using KiiBlog.Application.Services;
+using KiiBlog.Application.UnitOfWork;
+using KiiBlog.Infrastructure.Options;
 using KiiBlog.Infrastructure.Persistence;
+using KiiBlog.Infrastructure.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,7 +21,11 @@ namespace KiiBlog.Infrastructure
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
 
+            // Options
+            services.Configure<AzureStorageOptions>(configuration.GetSection(AzureStorageOptions.SectionName));
+
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IBlobStorageService, BlobStorageService>();
 
             return services;
         }
