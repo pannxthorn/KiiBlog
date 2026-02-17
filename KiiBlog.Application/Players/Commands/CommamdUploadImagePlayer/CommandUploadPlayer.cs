@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using KillBlog.DTO.Base;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace KiiBlog.Application.Players
 {
-    public class CommandUploadPlayer : IRequest<string>
+    public class CommandUploadPlayer : IRequest<BASE_RESULT<string>>
     {
         public IFormFile File;
         public string Type { get; set; }

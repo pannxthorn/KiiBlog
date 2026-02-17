@@ -26,6 +26,7 @@ namespace KiiBlog.Infrastructure
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IBlobStorageService, BlobStorageService>();
+            services.AddScoped<IImageProcessingService, ImageProcessingService>();
 
             return services;
         }

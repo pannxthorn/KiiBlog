@@ -1,4 +1,5 @@
 ﻿@page "/Players"
+@using KillBlog.DTO.Base
 @inject HttpClient HttpClient
 
 <div class="row">
@@ -86,7 +87,7 @@
                 return;
             }
 
-            var result = await UploadFileToApi(file);
+            photoURL = await UploadFileToApi(file);
         }
         catch (Exception ex)
         {
@@ -114,7 +115,13 @@
         content.Add(fileContent, "file", file.Name);
 
         var response = await HttpClient.PostAsync($"https://localhost:7253/api/Player/UploadPlayerImage", content);
+        response.EnsureSuccessStatusCode();
 
+        var result = await response.Content.ReadFromJsonAsync<BASE_RESULT<string>>();
+        if (result != null && result.IS_SUCCESS)
+        {
+            photoURL = result.RESULT ?? string.Empty;
+        }
         return photoURL;
     }
 }
