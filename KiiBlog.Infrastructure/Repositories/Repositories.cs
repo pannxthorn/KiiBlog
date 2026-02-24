@@ -129,5 +129,23 @@ namespace KiiBlog.Infrastructure.Repositories
         }
 
         #endregion [Create Data]
+
+        #region [Update Data]
+
+        public void Update(T entity)
+        {
+            _dbSet.Update(entity);
+        }
+
+        #endregion [Update Data]
+
+        #region [Delete Data]
+
+        public void Remove(T entity)
+        {
+            _dbSet.Remove(entity);
+        }
+
+        #endregion [Delete Data]
     }
 }

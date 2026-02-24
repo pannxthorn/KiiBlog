@@ -22,6 +22,8 @@ namespace KiiBlog.Application.Repositories
 
         // Command Methods
         Task AddAsync(T entity);
+        void Update(T entity);
+        void Remove(T entity);
 
         // Count Methods
     }
